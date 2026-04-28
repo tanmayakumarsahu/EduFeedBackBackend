@@ -3,31 +3,71 @@ package com.edufeedback.backend.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints = {
+@UniqueConstraint(columnNames = "email")
+})
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+```
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
 
-    private String email;
-    private String name;
-    private String password;
-    private String role;
+@Column(nullable = false)
+private String email;
 
-    public User() {}
+@Column(nullable = false)
+private String name;
 
-    public Long getId() { return id; }
+@Column(nullable = false)
+private String password;
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+@Column(nullable = false)
+private String role;
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+public User() {}
 
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
+public User(String name, String email, String password, String role) {
+    this.name = name;
+    this.email = email;
+    this.password = password;
+    this.role = role;
+}
 
-    public String getRole() { return role; }
-    public void setRole(String role) { this.role = role; }
+public Long getId() {
+    return id;
+}
+
+public String getEmail() {
+    return email;
+}
+
+public void setEmail(String email) {
+    this.email = email;
+}
+
+public String getName() {
+    return name;
+}
+
+public void setName(String name) {
+    this.name = name;
+}
+
+public String getPassword() {
+    return password;
+}
+
+public void setPassword(String password) {
+    this.password = password;
+}
+
+public String getRole() {
+    return role;
+}
+
+public void setRole(String role) {
+    this.role = role;
+}
+```
 }
